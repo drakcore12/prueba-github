@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Inicio')}"></head>
+<body>
+<header th:replace="~{fragments/layout :: header}"></header>
+<main class="container main-content">
+  <section class="hero">
+    <div>
+      <p class="eyebrow">PANEL ADMINISTRATIVO</p>
+      <h1>Todo para organizar tu papelería.</h1>
+      <p>Gestiona las categorías y los productos de Ockly desde un solo lugar.</p>
+      <div class="actions"><a class="btn btn-primary" th:href="@{/productos}">Ver productos</a><a class="btn btn-outline" th:href="@{/categorias}">Ver categorías</a></div>
+    </div>
+    <div class="hero-art" aria-hidden="true"><span>O</span><p>Gestión sencilla<br>para cada día.</p></div>
+  </section>
+  <section class="stats" aria-label="Resumen del catálogo">
+    <article class="stat"><div class="stat-name">Categorías registradas</div><strong th:text="${categoriasTotal}">0</strong><a th:href="@{/categorias}">Administrar categorías</a></article>
+    <article class="stat"><div class="stat-name">Productos registrados</div><strong th:text="${productosTotal}">0</strong><a th:href="@{/productos}">Administrar productos</a></article>
+  </section>
+  <section class="section-head"><div><p class="eyebrow">EMPIEZA AQUÍ</p><h2>Accesos rápidos</h2></div></section>
+  <div class="cards-two">
+    <a class="feature-card" th:href="@{/categorias/nuevo}"><span class="feature-icon">+</span><h3>Nueva categoría</h3><p>Organiza los artículos por tipo.</p><span class="feature-link">Crear categoría →</span></a>
+    <a class="feature-card" th:href="@{/productos/nuevo}"><span class="feature-icon">+</span><h3>Nuevo producto</h3><p>Registra precio, existencias y categoría.</p><span class="feature-link">Crear producto →</span></a>
+  </div>
+</main>
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+</body></html>

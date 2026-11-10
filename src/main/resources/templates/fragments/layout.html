@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(titulo)">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title th:text="${titulo} + ' | Ockly'">Ockly</title>
+  <link rel="stylesheet" th:href="@{/css/ockly.css}">
+</head>
+<body>
+  <header class="site-header" th:fragment="header">
+    <div class="container header-content">
+      <a class="logo" th:href="@{/}"><span class="logo-mark">O</span><span>Ockly</span></a>
+      <nav aria-label="Navegación principal">
+        <a th:href="@{/}">Inicio</a>
+        <a th:href="@{/categorias}">Categorías</a>
+        <a th:href="@{/productos}">Productos</a>
+      </nav>
+    </div>
+  </header>
+  <footer th:fragment="footer" class="site-footer">
+    <div class="container">Ockly · Proyecto de Arquitectura de Software · I. U. Pascual Bravo · 2026</div>
+  </footer>
+</body>
+</html>

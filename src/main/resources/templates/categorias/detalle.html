@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Detalle de categoría')}"></head><body>
+<header th:replace="~{fragments/layout :: header}"></header>
+<main class="container main-content">
+<div class="back"><a th:href="@{/categorias}">← Volver a categorías</a></div>
+<div class="page-title"><div><p class="eyebrow">DETALLE DE CATEGORÍA</p><h1 th:text="${categoria.nombre}">Categoría</h1><p th:text="${#strings.isEmpty(categoria.descripcion) ? 'Sin descripción adicional' : categoria.descripcion}">Descripción</p></div><a class="btn btn-outline" th:href="@{/categorias/{id}/editar(id=${categoria.id})}">Editar categoría</a></div>
+<div class="panel"><div class="panel-head"><h2>Productos asociados</h2><span class="pill" th:text="${#lists.size(productos)} + ' productos'">0 productos</span></div><div class="table-scroll" th:if="${!#lists.isEmpty(productos)}"><table><thead><tr><th>Producto</th><th>Precio</th><th>Existencias</th><th>Acción</th></tr></thead><tbody><tr th:each="producto : ${productos}"><td th:text="${producto.nombre}"></td><td th:text="'COP $' + ${producto.precio}"></td><td th:text="${producto.stock}"></td><td><a th:href="@{/productos/{id}(id=${producto.id})}">Ver</a></td></tr></tbody></table></div><p class="panel-placeholder" th:if="${#lists.isEmpty(productos)}">Aún no hay productos asociados a esta categoría.</p></div>
+</main><footer th:replace="~{fragments/layout :: footer}"></footer>
+</body></html>

@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Detalle de producto')}"></head><body>
+<header th:replace="~{fragments/layout :: header}"></header>
+<main class="container main-content narrow">
+  <div class="back"><a th:href="@{/productos}">← Volver a productos</a></div>
+  <div class="page-title"><div><p class="eyebrow">FICHA DE PRODUCTO</p><h1 th:text="${producto.nombre}">Producto</h1><p th:text="${#strings.isEmpty(producto.descripcion) ? 'Sin descripción adicional' : producto.descripcion}"></p></div></div>
+  <div class="detail-card"><dl><div><dt>Identificador</dt><dd th:text="${producto.id}"></dd></div><div><dt>Categoría</dt><dd><a th:href="@{/categorias/{id}(id=${producto.categoria.id})}" th:text="${producto.categoria.nombre}"></a></dd></div><div><dt>Precio</dt><dd th:text="'COP $ ' + ${producto.precio}"></dd></div><div><dt>Existencias</dt><dd th:text="${producto.stock}"></dd></div></dl><a class="btn btn-primary" th:href="@{/productos/{id}/editar(id=${producto.id})}">Editar producto</a></div>
+</main><footer th:replace="~{fragments/layout :: footer}"></footer>
+</body></html>

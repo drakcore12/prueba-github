@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Categorías')}"></head><body>
+<header th:replace="~{fragments/layout :: header}"></header>
+<main class="container main-content">
+  <div class="page-title"><div><p class="eyebrow">CATÁLOGO / MVC</p><h1>Categorías</h1><p>Clasifica los artículos de la papelería.</p></div><a class="btn btn-primary" th:href="@{/categorias/nuevo}">+ Nueva categoría</a></div>
+  <div class="alert success" th:if="${exito}" th:text="${exito}" role="status"></div>
+  <div class="alert error" th:if="${error}" th:text="${error}" role="alert"></div>
+  <section class="panel" th:if="${!#lists.isEmpty(categorias)}">
+    <div class="table-scroll"><table><thead><tr><th>Nombre</th><th>Descripción</th><th class="align-right">Acciones</th></tr></thead>
+      <tbody><tr th:each="categoria : ${categorias}">
+        <td><strong th:text="${categoria.nombre}">Categoría</strong></td>
+        <td class="muted" th:text="${#strings.isEmpty(categoria.descripcion) ? 'Sin descripción' : categoria.descripcion}">Descripción</td>
+        <td><div class="row-actions"><a th:href="@{/categorias/{id}(id=${categoria.id})}">Consultar</a><a th:href="@{/categorias/{id}/editar(id=${categoria.id})}">Editar</a><form th:action="@{/categorias/{id}/eliminar(id=${categoria.id})}" method="post" onsubmit="return confirm('¿Eliminar esta categoría? Solo es posible si no tiene productos.');"><button class="link-danger" type="submit">Eliminar</button></form></div></td>
+      </tr></tbody></table></div>
+  </section>
+  <section class="empty-state" th:if="${#lists.isEmpty(categorias)}"><div class="empty-symbol">□</div><h2>No hay categorías registradas</h2><p>Crea la primera categoría para empezar a registrar productos.</p><a class="btn btn-primary" th:href="@{/categorias/nuevo}">Crear categoría</a></section>
+</main><footer th:replace="~{fragments/layout :: footer}"></footer>
+</body></html>

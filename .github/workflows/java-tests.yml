@@ -1,0 +1,25 @@
+name: Pruebas MVC Ockly
+on:
+  push:
+    branches: ["ockly-mvc-springboot"]
+  pull_request:
+    branches: ["main"]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: .
+    steps:
+      - name: Obtener código
+        uses: actions/checkout@v4
+      - name: Configurar Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+      - name: Compilar y ejecutar pruebas de integración (H2)
+        run: mvn -B clean test

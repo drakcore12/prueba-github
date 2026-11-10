@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Formulario de categoría')}"></head><body>
+<header th:replace="~{fragments/layout :: header}"></header>
+<main class="container main-content narrow">
+  <div class="back"><a th:href="@{/categorias}">← Volver a categorías</a></div>
+  <div class="page-title"><div><p class="eyebrow">GESTIÓN DE CATEGORÍAS</p><h1 th:text="${categoria.id == null ? 'Nueva categoría' : 'Editar categoría'}">Categoría</h1><p>Ingresa la información de la categoría.</p></div></div>
+  <form class="form-card" th:action="@{/categorias/guardar}" th:object="${categoria}" method="post" novalidate>
+    <input type="hidden" th:field="*{id}">
+    <div class="field"><label for="nombre">Nombre <span class="required">*</span></label><input id="nombre" th:field="*{nombre}" type="text" maxlength="100" placeholder="Ej. Cuadernos" required><small class="field-error" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></small></div>
+    <div class="field"><label for="descripcion">Descripción</label><textarea id="descripcion" th:field="*{descripcion}" rows="4" maxlength="500" placeholder="Describe la categoría (opcional)"></textarea><small class="field-error" th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"></small></div>
+    <div class="form-actions"><a class="btn btn-outline" th:href="@{/categorias}">Cancelar</a><button class="btn btn-primary" type="submit">Guardar categoría</button></div>
+  </form>
+</main><footer th:replace="~{fragments/layout :: footer}"></footer>
+</body></html>
